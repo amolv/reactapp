@@ -20,23 +20,31 @@ class Board extends React.Component {
   }
 
   render() {
+    
+    const three = (i) => {
+      const items = [];
+      
+      const start = ( i == 1 ? 0: i*3 - 3 )
+      i = i *3;
+      for (let index = start; index < i; index++) {
+        items.push( this.renderSquare(index) )      
+      }
+      return items;
+    }
+    const outer = (i) => {
+      const rows = [];
+      for (let index = 1; index <= i; index++) {
+        rows.push(
+          <div className="board-row">
+            { three(index) }
+          </div>          
+        )      
+      }
+      return rows;
+    }
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        { outer(3) }        
       </div>
     );
   }
